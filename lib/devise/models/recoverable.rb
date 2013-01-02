@@ -48,6 +48,11 @@ module Devise
         send_devise_notification(:reset_password_instructions)
       end
 
+      # Simply generate reset password with out sending instructions email
+      def just_generate_reset_password_token
+        generate_reset_password_token! if should_generate_reset_token?
+      end      
+
       # Checks if the reset password token sent is within the limit time.
       # We do this by calculating if the difference between today and the
       # sending date does not exceed the confirm in time configured.
